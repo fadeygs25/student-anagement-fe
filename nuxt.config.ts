@@ -8,6 +8,23 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
+    '~/modules/primevue',
   ],
   srcDir: 'src/',
+  runtimeConfig: {
+    public: {
+      API_BASE_URL: process.env.API_BASE_URL,
+    },
+  },
+
+  build: {
+    transpile: [
+      'chart.js',
+      'primevue'
+    ]
+  },
+  css: [
+    'primeicons/primeicons.css',
+    'prismjs/themes/prism-coy.css',
+  ],
 })
