@@ -1,11 +1,13 @@
 <!-- pages/students/create.vue -->
-  
+
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useStudentStore } from '@/stores/student';
 import { useForm } from 'vee-validate';
 import { studentSchema } from '@/schemas/studentSchema'; // Import schema từ file riêng
-import { Input, Button } from '@shadcn/ui';
+import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
+import Button from 'primevue/button';
 
 const form = ref({ name: '', age: '' });
 const studentStore = useStudentStore();
@@ -23,18 +25,25 @@ const submitForm = handleSubmit(async () => {
 /* Add any necessary styles */
 </style>
 
-
 <template>
-    <div class="p-6">
-      <h1 class="text-2xl font-bold mb-6">Add New Student</h1>
-      <form @submit.prevent="submitForm" class="space-y-4">
-        <Input v-model="form.name" placeholder="Name" label="Name" />
+  <div class="p-6">
+    <h1 class="text-2xl font-bold mb-6">Add New Student</h1>
+    <form @submit.prevent="submitForm" class="space-y-4">
+      <!-- Input for Name -->
+      <div class="field">
+        <label for="name">Name</label>
+        <InputText type="text" v-model="form.name" id="name" placeholder="Name" class="w-full" />
         <span v-if="errors.name" class="text-red-500">{{ errors.name }}</span>
-        
-        <Input v-model="form.age" type="number" placeholder="Age" label="Age" />
+      </div>
+      
+      <!-- Input for Age -->
+      <div class="field">
+        <label for="age">Age</label>
+        <InputNumber v-model="form.age" id="age" placeholder="Age" class="w-full" />
         <span v-if="errors.age" class="text-red-500">{{ errors.age }}</span>
-        
-        <Button type="submit" variant="primary">Add Student</Button>
-      </form>
-    </div>
-  </template>
+      </div>
+      <!-- Submit Button -->
+      <Button type="submit" label="Add Student" class="p-button-primary" />
+    </form>
+  </div>
+</template>

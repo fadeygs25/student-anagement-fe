@@ -28,7 +28,9 @@
 <template>
     <div class="p-6">
       <h1 class="text-2xl font-bold mb-6">Student List</h1>
-      <Button @click="$router.push('/students/create')" class="mb-4" label="Add Student" />
+      <NuxtLink to="/students/create">
+        <Button class="mb-4" label="Add Student" />
+      </NuxtLink>
       
       <!-- DataTable Component -->
       <DataTable :value="students" class="w-full">
